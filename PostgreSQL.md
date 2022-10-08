@@ -58,3 +58,8 @@ INTO TEMP TABLE new_tablename
 -- Existing table with exisitng columns
 FROM table;
 ```
+#### Trim 
+trim(street, '0123456789 #/.')
+
+- split_part
+`split_part(string_to_split, delimiter, part_number)`
