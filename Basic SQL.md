@@ -1,4 +1,86 @@
-# Basic SQL
+
+- **SQL Server on Azure Virtual Machines (VMs)** - A virtual machine running in Azure with an installation of SQL Server. The use of a VM makes this option an **infrastructure-as-a-service (IaaS)** solution that virtualizes hardware infrastructure for compute, storage, and networking in Azure; making it a great option for "lift and shift" migration of existing on-premises SQL Server installations to the cloud.
+- **Azure SQL Managed Instance** - A **platform-as-a-service (PaaS)** option that provides near-100% compatibility with on-premises SQL Server instances while abstracting the underlying hardware and operating system. The service includes automated software update management, backups, and other maintenance tasks, reducing the administrative burden of supporting a database server instance.
+- **Azure SQL Database** - A fully managed, highly scalable PaaS database service that is designed for the cloud. This service includes the core database-level capabilities of on-premises SQL Server, and is a good option when you need to create a new application in the cloud.
+- **Azure SQL Edge** - A SQL engine that is optimized for *Internet-of-things (IoT)* scenarios that need to work with streaming *time-series* data.
+
+==============================================================================================
+Some popular dialects of SQL include:
+- Transact-SQL (T-SQL). This version of SQL is used by Microsoft SQL Server and Azure SQL services.
+- pgSQL. This is the dialect, with extensions implemented in PostgreSQL.
+- PL/SQL. This is the dialect used by Oracle. PL/SQL stands for Procedural Language/SQL.
+
+## SQL statement types
+SQL statements are grouped into three main logical groups:
+
+- Data Definition Language (DDL)
+     - CREATE Create a new object in the database, such as a table or a view.
+     - ALTER Modify the structure of an object. For instance, altering a table to add a new column.
+     - DROP Remove an object from the database.
+     - RENAME Rename an existing object.
+
+```
+CREATE TABLE Product
+(
+    ID INT PRIMARY KEY,
+    Name VARCHAR(20) NOT NULL,
+    Price DECIMAL NULL
+);
+```
+- Data Control Language (DCL)
+     - GRANT	Grant permission to perform specific actions
+     - DENY	Deny permission to perform specific actions
+     - REVOKE	Remove a previously granted permission
+ ```
+ GRANT SELECT, INSERT, UPDATE
+ON Product
+TO user1;
+```
+- Data Manipulation Language (DML)
+     - SELECT	Read rows from a table
+     - INSERT	Insert new rows into a table
+     - UPDATE	Modify data in existing rows
+     - DELETE	Delete existing rows
+ ```
+ SELECT FirstName, LastName, Address, City
+FROM Customer
+WHERE City = 'Seattle'
+ORDER BY LastName;
+
+UPDATE Customer
+SET Address = '123 High St.'
+WHERE ID = 1;
+
+DELETE FROM Product
+WHERE ID = 162;
+
+INSERT INTO Product(ID, Name, Price)
+VALUES (99, 'Drill', 4.99);
+```
+### What is a view?
+A view is a virtual table based on the results of a SELECT query. 
+```
+CREATE VIEW Deliveries
+AS
+SELECT o.OrderNo, o.OrderDate,
+       c.FirstName, c.LastName, c.Address, c.City
+FROM Order AS o JOIN Customer AS c
+ON o.Customer = c.ID;
+```
+### What is a stored procedure?
+A stored procedure defines SQL statements that can be run on command.
+```
+CREATE PROCEDURE RenameProduct
+	@ProductID INT,
+	@NewName VARCHAR(20)
+AS
+UPDATE Product
+SET Name = @NewName
+WHERE ID = @ProductID;
+```
+
+
+============================================================================================
 #### Why Businesses Like Databases
 - **Data integrity is ensured** - only the data you want to be entered is entered, and only certain users are able to enter data into the database.
 - **Data can be accessed quickly** - SQL allows you to obtain results very quickly from the data stored in a database. Code can be optimized to quickly pull results.
@@ -22,11 +104,6 @@ In the Parch & Posey database there are five tables (essentially 5 spreadsheets)
 - region
 
 The "crow's foot" that connects the tables together shows us how the columns in one table relate to the columns in another table. 
-
-### Types of Statements
-- **CREATE TABLE** is a statement that creates a new table in a database.
-- **DROP TABLE** is a statement that removes a table in a database.
-- **SELECT** allows you to read data and display it. This is called a query.
 
 ### Introduction to Logical Operators
 Logical Operators include:
