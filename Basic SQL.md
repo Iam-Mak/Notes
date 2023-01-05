@@ -1,10 +1,22 @@
+## SQL Window Functions
+- Partition by: A subclause of the OVER clause. Similar to GROUP BY.
+- Over: Typically precedes the partition by that signals what to “GROUP BY”.
+- Aggregates: Aggregate functions that are used in window functions, too (e.g., sum, count, avg).
+- Row_number(): Ranking function where each row gets a different number.
+- Rank(): Ranking function where a row could get the same rank if they have the same value.
+- Dense_rank(): Ranking function similar to rank() but ranks are not skipped with ties.
+- Aliases: Shorthand that can be used if there are several window functions in one query.
+- Percentiles: Defines what percentile a value falls into over the entire table.
+- Lag/Lead: Calculating differences between rows’ values.
+
+=========================================================================================
 
 - **SQL Server on Azure Virtual Machines (VMs)** - A virtual machine running in Azure with an installation of SQL Server. The use of a VM makes this option an **infrastructure-as-a-service (IaaS)** solution that virtualizes hardware infrastructure for compute, storage, and networking in Azure; making it a great option for "lift and shift" migration of existing on-premises SQL Server installations to the cloud.
 - **Azure SQL Managed Instance** - A **platform-as-a-service (PaaS)** option that provides near-100% compatibility with on-premises SQL Server instances while abstracting the underlying hardware and operating system. The service includes automated software update management, backups, and other maintenance tasks, reducing the administrative burden of supporting a database server instance.
 - **Azure SQL Database** - A fully managed, highly scalable PaaS database service that is designed for the cloud. This service includes the core database-level capabilities of on-premises SQL Server, and is a good option when you need to create a new application in the cloud.
 - **Azure SQL Edge** - A SQL engine that is optimized for *Internet-of-things (IoT)* scenarios that need to work with streaming *time-series* data.
 
-==============================================================================================
+================================================================================
 Some popular dialects of SQL include:
 - Transact-SQL (T-SQL). This version of SQL is used by Microsoft SQL Server and Azure SQL services.
 - pgSQL. This is the dialect, with extensions implemented in PostgreSQL.
